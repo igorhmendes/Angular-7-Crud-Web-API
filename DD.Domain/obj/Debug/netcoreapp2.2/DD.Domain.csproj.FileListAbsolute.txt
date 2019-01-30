@@ -1,0 +1,9 @@
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.deps.json
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.dll
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.pdb
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.csprojAssemblyReference.cache
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.AssemblyInfoInputs.cache
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.AssemblyInfo.cs
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.dll
+C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.pdb

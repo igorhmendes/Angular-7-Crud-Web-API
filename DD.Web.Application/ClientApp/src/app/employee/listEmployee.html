@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example of Bootstrap 3 Condensed Tables</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .bs-example {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="bs-example col-lg-12 grid-margin content-index">
+    <div>
+      <h4>Employees </h4>
+      </div>
+      <div class="panel-body ">
+        <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Employees" [(ngModel)]="searchTerm"/>
+      </div>
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Contact No</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees | employeeFilter: searchTerm">
+            <td>{{employee.Id}}</td>
+            <td>{{employee.Name}}</td>
+            <td>{{employee.Email}}</td>
+            <td>{{employee.Address}}</td>
+            <td>{{employee.ContactNo}}</td>
+            <td>
+              <div class="pull-right action-buttons">
+                <button class="btn btn-primary btn-xs teste" data-title="Edit" data-toggle="modal" data-target="#edit" [routerLink]='["/updateEmployee", employee.Id]'><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn btn-danger btn-xs teste" data-title="Delete" data-toggle="modal" data-target="#delete" (click)="deleteEmployee(employee.Id)"><span class="glyphicon glyphicon-trash"></span></button>
+              </div>
+            </td>
+            <!-- <td>johncarter@mail.com</td>-->
+          </tr>
+          <!--<tr>
+          <td>2</td>
+          <td>Peter</td>
+          <td>Parker</td>
+          <td>peterparker@mail.com</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>John</td>
+          <td>Rambo</td>
+          <td>johnrambo@mail.com</td>
+        </tr>-->
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="col-lg-12 grid-margin content-index">
+  <h1>Hi!</h1>
+  <p>You're logged in with Angular 7!!</p>
+  <h3>All registered employees:</h3>
+  <ul>
+    <li *ngFor="let employee of employees">
+      ID:{{employee.id}} NAME:{{employee.name}} EMAIL:({{employee.email}})
+      - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+  </ul>
+</div>-->
+<!--<div class="col-lg-12 grid-margin content-index">
+  <div class="row">
+    <div class="">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-list"></span>Employees
+          <div class="pull-right action-buttons">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-cog" style="margin-right: 0px;"></span>
+              </button>
+              <ul class="dropdown-menu slidedown">
+                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span>Edit</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-trash"></span>Delete</a></li>
+                <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-flag"></span>Flag</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <label for="checkbox">
+                  List group item heading
+                </label>
+              </div>
+              <div class="pull-right action-buttons">
+                <a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox2" />
+                <label for="checkbox2">
+                  List group item heading 1
+                </label>
+              </div>
+              <div class="pull-right action-buttons">
+                <a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox3" />
+                <label for="checkbox3">
+                  List group item heading 2
+                </label>
+              </div>
+              <div class="pull-right action-buttons">
+                <a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox4" />
+                <label for="checkbox4">
+                  List group item heading 3
+                </label>
+              </div>
+              <div class="pull-right action-buttons">
+                <a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="checkbox">
+                <input type="checkbox" id="checkbox5" />
+                <label for="checkbox5">
+                  List group item heading 4
+                </label>
+              </div>
+              <div class="pull-right action-buttons">
+                <a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="http://www.jquery2dotnet.com" class="flag"><span class="glyphicon glyphicon-flag"></span></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-6">
+              <h6>
+                Total Count <span class="label label-info">25</span>
+              </h6>
+            </div>
+            <div class="col-md-6">
+              <ul class="pagination pagination-sm pull-right">
+                <li class="disabled"><a href="javascript:void(0)">«</a></li>
+                <li class="active"><a href="javascript:void(0)">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="http://www.jquery2dotnet.com">2</a></li>
+                <li><a href="http://www.jquery2dotnet.com">3</a></li>
+                <li><a href="http://www.jquery2dotnet.com">4</a></li>
+                <li><a href="http://www.jquery2dotnet.com">5</a></li>
+                <li><a href="javascript:void(0)">»</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->

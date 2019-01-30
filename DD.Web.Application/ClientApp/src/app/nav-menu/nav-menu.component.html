@@ -1,0 +1,83 @@
+<div class='main-nav'>
+  <div class='navbar navbar-inverse'>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'>as</span>
+        <span class='icon-bar'>as</span>
+        <span class='icon-bar'>as</span>
+      </button>
+      <a class='navbar-brand' [routerLink]='["/"]'>DiscoveryDate.Web.Application</a>
+    </div>
+    <div class='clearfix'></div>
+    <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+      <ul class='nav navbar-nav'>
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a [routerLink]='["/"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-home'></span> Home
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/counter"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-education'></span> Counter
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Fetch data
+          </a>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <!--<hr/>-->
+          <!--<a [routerLink]='["/employee"]' (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      <span class='glyphicon glyphicon-user'></span> Employee
+    </a>-->
+        </li>
+
+
+        <li>
+          <a [routerLink]='["./"]' (click)='isCollapsed = !isCollapsed' [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            <span class='glyphicon glyphicon-user'></span> Employee
+          </a>
+          <!--<button class="nav navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      <a>
+      <span class='glyphicon glyphicon-user'></span>
+      <span>Employees</span>
+      </a>
+    </button>-->
+
+          <div id="collapseExample" [ngbCollapse]="isCollapsed">
+            <ul class="nav submenu">
+              <!--<! — This is submenu →-->
+              <li [routerLinkActive]='["link-active"]'>
+                <a [routerLink]='["/listEmployee"]'>
+                  <span class='glyphicon glyphicon-list'></span> List Employee
+                </a>
+              </li>
+              <li [routerLinkActive]='["link-active"]'>
+                <a [routerLink]='["/employee"]'>
+                  <span class='glyphicon glyphicon-plus'></span> Insert Employee
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <hr/>
+        </li>
+
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/logout"]' (click)='logout()'>
+            <span class='glyphicon glyphicon-off'></span> Logout
+          </a>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </div>
+</div>
