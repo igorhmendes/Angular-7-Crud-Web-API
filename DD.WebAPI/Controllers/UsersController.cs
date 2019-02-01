@@ -29,14 +29,16 @@ namespace WebApi.Controllers
 
         public UsersController(
             IUserRepo userService,
-            IRoleBAC roleCollection,
+            IRoleBAC roleBAC,
             IMapper mapper,
+            IRoleRepo roleRepo,
             IOptions<AppSettings> appSettings)
         {
             _userRepo = userService;
             _mapper = mapper;
             _appSettings = appSettings.Value;
-            _roleBAC = roleCollection;
+            _roleBAC = roleBAC;
+            _roleRepo = roleRepo;
         }
 
         [AllowAnonymous]
