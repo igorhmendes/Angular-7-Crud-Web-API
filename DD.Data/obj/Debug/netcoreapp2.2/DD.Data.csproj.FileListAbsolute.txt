@@ -10,3 +10,17 @@ C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Data\obj\Debug\netcoreapp2.2\DD.D
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.csproj.CopyComplete
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.dll
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.pdb
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Data.deps.json
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Data.dll
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Data.pdb
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Common.dll
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Domain.dll
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Common.pdb
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\bin\Debug\netcoreapp2.2\DD.Domain.pdb
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.csprojAssemblyReference.cache
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.csproj.CoreCompileInputs.cache
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.AssemblyInfoInputs.cache
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.AssemblyInfo.cs
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.csproj.CopyComplete
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.dll
+C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Data\obj\Debug\netcoreapp2.2\DD.Data.pdb

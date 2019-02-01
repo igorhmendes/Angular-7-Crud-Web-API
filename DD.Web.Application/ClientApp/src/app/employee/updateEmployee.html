@@ -5,12 +5,12 @@
       <h4 style="color:red">Setup Angular 6 project with Entity Framework and Asp.net Core</h4>
       <div class="col-lg-12 grid-margin stretch-card ">
         <div class="card">
-          <form class="forms-sample" [formGroup]="employeeForm" (ngSubmit)="editEmployee(employeeForm.value)" novalidate>
+          <form class="forms-sample" [formGroup]="employeeForm" (ngSubmit)="editEmployee()" novalidate>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control" formControlName="name" id="name" placeholder="name" [(ngModel)]="emp.name">
+                  <input type="text" class="form-control" formControlName="name" id="name" placeholder="name" >
                   <div *ngIf="employeeForm.controls.name.invalid && (employeeForm.controls.name.dirty || employeeForm.controls.name.touched)" class="alert alert-danger">
                     <div *ngIf="employeeForm.controls.name.errors.required">
                       Name is required.
@@ -22,7 +22,7 @@
 
               <div class="col-lg-6">
                 <label>Email</label>
-                <input type="text" maxlength="500" name="email" class="form-control" formControlName="email" id="email" placeholder="email" [(ngModel)]='emp.email'>
+                <input type="text" class="form-control" formControlName="email" id="email" placeholder="email">
                 <div *ngIf="employeeForm.controls.email.invalid && (employeeForm.controls.email.dirty || employeeForm.controls.email.touched)" class="alert alert-danger">
                   <div *ngIf="employeeForm.controls.email.errors.required">
                     Email is required.
@@ -42,7 +42,7 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label>Contact No</label>
-                  <input type="text" name="contactNo" maxlength="10" class="form-control" formControlName="contactNo" id="contactNo" placeholder="contactNo" [(ngModel)]='emp.contactNo'>
+                  <input type="text" maxlength="10" class="form-control" formControlName="contactNo" id="contactNo" placeholder="contactNo">
                   <div *ngIf="employeeForm.controls.contactNo.invalid && (employeeForm.controls.contactNo.dirty || employeeForm.controls.contactNo.touched)" class="alert alert-danger">
                     <div *ngIf="employeeForm.controls.contactNo.errors.required">
                       Contact No is required.
@@ -57,10 +57,10 @@
 
               <div class="col-lg-6">
                 <label>Address</label>
-                <input type="text" maxlength="500" name="adress" class="form-control" formControlName="address" id="address" placeholder="address" [(ngModel)]='emp.address'>
+                <input type="text" class="form-control" formControlName="address" id="address" placeholder="address">
               </div>
             </div>
-            <button type="submit" class="btn btn-submit pull-right" [disabled]="employeeForm.invalid">Submit</button>
+            <button type="submit" class="btn btn-submit pull-right"  [disabled]="employeeForm.invalid">Submit</button>
           </form>
           <hr />
 

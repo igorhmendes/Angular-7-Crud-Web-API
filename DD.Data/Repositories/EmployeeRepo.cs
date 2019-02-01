@@ -1,9 +1,7 @@
 ﻿using DD.Domain.Interface.Repositories;
 using DD.Domain.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DD.Data.Repositories
 {

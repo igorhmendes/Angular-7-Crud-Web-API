@@ -13,7 +13,6 @@ namespace DD.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("MyPolicy")]
     public class HomeController : Controller
     {
         public readonly IEmployeeBAC employeeBAC;

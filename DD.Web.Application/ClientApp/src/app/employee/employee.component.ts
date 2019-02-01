@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { EmployeeServiceService } from '../employee-service.service';
 import { IEmployee } from '../models/Employee';
 import { NgForm } from '@angular/forms';
@@ -23,16 +23,16 @@ export class EmployeeComponent implements OnInit {
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
     this.name = new FormControl('', [Validators.required]);
-    this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern)]);
-    this.address = new FormControl();
-    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation)]);
+    this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern), Validators.maxLength(500)]);
+    this.address = new FormControl('', Validators.maxLength(500));
+    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation), Validators.maxLength(10)]);
 
     this.employeeForm = new FormGroup({
       name: this.name,
       email: this.email,
       address: this.address,
       contactNo: this.contactNo
-    })
+    });
   }
 
   saveEmployee(obj: any) {
@@ -44,11 +44,7 @@ export class EmployeeComponent implements OnInit {
 
     });
   }
-
 }
-
-
-
 
 
 @Component({
@@ -64,12 +60,9 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(private employeeService: EmployeeServiceService) { }
 
-
   ngOnInit() {
     this.LoadEmployees();// this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
   }
-
-
 
   deleteEmployee(id) {
 
@@ -88,7 +81,6 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
   }
 
-
   //EditEmployee(regForm: NgForm) {
   //  this.employeeService.EditEmployee(this.objemp).subscribe(res => {
   //    alert("Employee updated successfully");
@@ -97,11 +89,7 @@ export class EmployeeListComponent implements OnInit {
 
   //  },  
   //};
-
-
 }
-
-
 
 @Component({
   selector: 'app-employeeUpdate',
@@ -110,9 +98,7 @@ export class EmployeeListComponent implements OnInit {
 })
 export class EmployeeUpdateComponent implements OnInit {
 
-  emp: IEmployee;
   _id: number;
-
   employeeForm: FormGroup
   name: FormControl
   email: FormControl
@@ -125,26 +111,31 @@ export class EmployeeUpdateComponent implements OnInit {
   //@Output() nameEvent = new EventEmitter<string>();
   //@ViewChild('closeBtn') cb: ElementRef;
   ngOnInit() {
-    const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailPattern = "[^ @]*@[^ @]*";
     const PhoneValidation = "^[7-9][0-9]{9}$";
     this.name = new FormControl('', [Validators.required]);
     this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern)]);
     this.address = new FormControl();
-    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation)]);
+    // TODO add phone validation
+    this.contactNo = new FormControl('', [Validators.required]);
 
     this.employeeForm = new FormGroup({
       name: this.name,
       email: this.email,
       address: this.address,
       contactNo: this.contactNo
-    })
+    });
 
+    let self = this;
     //this.employeeService.getEmployeeById(1).subscribe(data => this.emp = data);
     this.employeeService.getEmployeeById(this._route.snapshot.params['id']).toPromise().then(data => {
-      this.emp = data;
-      this._id = this.emp.id;
+      
+      for (let prop in data) 
+        if (self.employeeForm.get(prop))
+          self.employeeForm.get(prop).setValue(data[prop]);         
+
     });
-    
+
     //this.EditEmployee(this.emp);
   }
   //@Input() reset: boolean = false;
@@ -153,7 +144,7 @@ export class EmployeeUpdateComponent implements OnInit {
   //objtempemp: IEmployee;
   //@Input() objemp: IEmployee = new IEmployee();
   editEmployee(emp: IEmployee) {
-      emp.id = this._id;
+    
       this.employeeService.updateEmployee(emp).subscribe(res => {
       alert("Employee updated successfully");
       //this.nameEvent.emit("ccc");

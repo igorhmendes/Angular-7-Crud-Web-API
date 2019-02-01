@@ -1,8 +1,6 @@
-﻿using DD.Domain.Model;
+﻿using DD.Common.Security.Model;
+using DD.Domain.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DD.Data
 {
@@ -17,5 +15,9 @@ namespace DD.Data
         }
 
         public virtual DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
     }
 }
