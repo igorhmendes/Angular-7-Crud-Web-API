@@ -1,4 +1,7 @@
-﻿namespace DD.Common.Security.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DD.Common.Security.Model
 {
     public class UserRole
     {

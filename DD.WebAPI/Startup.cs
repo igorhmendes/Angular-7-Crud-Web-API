@@ -35,9 +35,9 @@ namespace DD.WebAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-            services.AddDbContext<DiscoveryDataDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DiscoveryDataDev")));
-            services.AddTransient<IEmployeeBAC, EmployeeBAC>();
-            services.AddTransient<IEmployeeRepo, EmployeeRepo>();
+            services.AddDbContext<DiscoveryDataDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DiscoveryDataDev")), ServiceLifetime.Singleton);
+            services.AddScoped<IEmployeeBAC, EmployeeBAC>();
+            services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 
             services.AddAutoMapper();
 
@@ -83,8 +83,8 @@ namespace DD.WebAPI
             });
 
             // configure DI for application services
-            services.AddScoped<IUserRepo, UserRepo>();
-            services.AddScoped<IRoleRepo, RoleRepo>();            
+            services.AddSingleton<IUserRepo, UserRepo>();
+            services.AddSingleton<IRoleRepo, RoleRepo>();            
 
             // Replace the default authorization policy provider with our own
             // custom provider which can return authorization policies for given

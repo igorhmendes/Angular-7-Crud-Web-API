@@ -7,15 +7,3 @@ C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.AssemblyInfo.cs
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.dll
 C:\Users\QATEmployee\source\repos\DD.WebAPI\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.pdb
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.deps.json
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.dll
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\bin\Debug\netcoreapp2.2\DD.Domain.pdb
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\bin\Debug\netcoreapp2.2\DD.Common.dll
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\bin\Debug\netcoreapp2.2\DD.Common.pdb
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.csprojAssemblyReference.cache
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.csproj.CoreCompileInputs.cache
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.AssemblyInfoInputs.cache
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.AssemblyInfo.cs
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.csproj.CopyComplete
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.dll
-C:\Users\QAT Employee\source\repos\Angular-7-Crud-Web-API\DD.Domain\obj\Debug\netcoreapp2.2\DD.Domain.pdb

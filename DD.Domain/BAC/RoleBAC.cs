@@ -23,7 +23,7 @@ namespace DD.Domain.BAC
 
         public RoleBAC(IRoleRepo roleRepo)
         {
-            var roles = roleRepo.GetAll();
+            IEnumerable<Role> roles = roleRepo.GetAll().ToList();
             _roles = new Dictionary<string, Role>();
             foreach (var r in roles)
             {

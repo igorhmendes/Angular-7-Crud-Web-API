@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DD.Common", "DD.Common\DD.C
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DD.DBSchema", "DD.DBSchema\DD.DBSchema.sqlproj", "{FB9269FA-44A1-421A-B591-4CB6C153B836}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "..\..\..\Documents\Projects\aspnet-core-registration-login-api-master\WebApi.csproj", "{AA8E1CEA-C22C-46AA-9BE4-70DDC8DDAB9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{FB9269FA-44A1-421A-B591-4CB6C153B836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB9269FA-44A1-421A-B591-4CB6C153B836}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB9269FA-44A1-421A-B591-4CB6C153B836}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AA8E1CEA-C22C-46AA-9BE4-70DDC8DDAB9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8E1CEA-C22C-46AA-9BE4-70DDC8DDAB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8E1CEA-C22C-46AA-9BE4-70DDC8DDAB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8E1CEA-C22C-46AA-9BE4-70DDC8DDAB9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

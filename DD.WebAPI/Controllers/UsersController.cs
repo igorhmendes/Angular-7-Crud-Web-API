@@ -16,7 +16,7 @@ using DD.Common.Security.Model;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]    
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
@@ -106,7 +106,7 @@ namespace WebApi.Controllers
         }
               
         [HttpGet]
-        [PermissionAuthorize(Permissions.ViewUser, Permissions.DeleteUser)]
+        //[PermissionAuthorize(Permissions.ViewUser, Permissions.DeleteUser)]
         public IActionResult GetAll()
         {
             var users =  _userRepo.GetAll();
@@ -114,7 +114,7 @@ namespace WebApi.Controllers
             return Ok(userDtos);
         }
 
-        [PermissionAuthorize(Permissions.ViewUser)]
+        //[PermissionAuthorize(Permissions.ViewUser)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -144,7 +144,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [PermissionAuthorize(Permissions.DeleteUser)]
+        //[PermissionAuthorize(Permissions.DeleteUser)]
         public IActionResult Delete(int id)
         {
             _userRepo.Delete(id);

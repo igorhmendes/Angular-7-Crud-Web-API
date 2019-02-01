@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DD.Common.Security.Model
@@ -15,6 +17,6 @@ namespace DD.Common.Security.Model
         }
 
         public string Name { get; set; }
-        public IList<RolePermission> RolePermissions { get; set; }
+        public ICollection<RolePermission> RolePermissions { get; set; }
     }
 }
