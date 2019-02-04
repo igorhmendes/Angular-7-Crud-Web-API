@@ -12,20 +12,15 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'employee', component: EmployeeComponent },
+  { path: 'employee', component: EmployeeComponent, canActivate : [ AuthGuard] },
   //{ path: 'index', component: IndexComponent },
   { path: 'home', component: HomeComponent },
   { path: 'counter', component: CounterComponent },
   { path: 'fetch-data', component: FetchDataComponent },
-  { path: 'listEmployee', component: EmployeeListComponent },
-  { path: 'updateEmployee/:id', component: EmployeeUpdateComponent },
-  
-
-
-  
-
+  { path: 'listEmployee', component: EmployeeListComponent, canActivate : [AuthGuard] },
+  { path: 'updateEmployee/:id', component: EmployeeUpdateComponent, canActivate : [AuthGuard] }
 ];
 
 @NgModule({

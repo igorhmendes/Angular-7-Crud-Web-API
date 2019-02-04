@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { IEmployee } from './models/Employee';
 import { Observable, of, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 //import { map } from 'rxjs/operators';
 //import { read } from 'fs';
 
@@ -12,28 +13,24 @@ import { Observable, of, Subject } from 'rxjs';
 @Injectable()
 export class EmployeeServiceService {
 
-  readonly rootUrl = 'https://localhost:5001';
-    //44342';
-
+  readonly rootUrl = environment.rootUrl + "/Home/";
   private _url: string = "/assets/data/employees.json";
   constructor(private http: HttpClient) { }
 
   saveEmployee(employee) {
-    return this.http.post(this.rootUrl + '/api/Home/SaveEmployee', employee);
+    return this.http.post(this.rootUrl+ 'SaveEmployee', employee);
   }
 
   getAllEmployees(): Observable<IEmployee[]> {
-    return this.http.get<IEmployee[]>(this.rootUrl + '/api/Home/GetAllEmployees');
-
-    //return this.http.get<IEmployee[]>(this._url);
+    return this.http.get<IEmployee[]>(this.rootUrl + 'GetAllEmployees');
   }
 
   deleteEmployee(id) {
-    return this.http.delete(this.rootUrl + '/api/Home/DeleteEmployee/'+ id);
+    return this.http.delete(this.rootUrl + 'DeleteEmployee/'+ id);
   }
 
   getEmployeeById(id): Observable<IEmployee> {
-    return this.http.get<IEmployee>(this.rootUrl + '/api/Home/GetEmployeeById/' + id);
+    return this.http.get<IEmployee>(this.rootUrl + 'GetEmployeeById/' + id);
   }
 
   updateEmployee(emp: IEmployee) {
@@ -42,7 +39,7 @@ export class EmployeeServiceService {
     var body = {
       Name: emp.name, Email: emp.email, ID: emp.id, ContactNo: emp.contactNo, Address: emp.address
     }
-    return this.http.put<IEmployee>(this.rootUrl + '/api/Home/' + emp.id, body)  
+    return this.http.put<IEmployee>(this.rootUrl + emp.id, body)  
   }
 
 }
