@@ -2,9 +2,9 @@
 {
     public enum Permissions
     {
-        CreateUser,
-        DeleteUser,
-        UpdateUser,
-        ViewUser
+        CreateUser = 1,
+        DeleteUser = 2,
+        UpdateUser = 3,
+        ViewUser = 4
     }
 }

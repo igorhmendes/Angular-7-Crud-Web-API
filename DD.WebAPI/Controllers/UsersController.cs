@@ -108,7 +108,7 @@ namespace WebApi.Controllers
         }
               
         [HttpGet]
-        //[PermissionAuthorize(Permissions.ViewUser, Permissions.DeleteUser)]
+        [PermissionAuthorize(Permissions.ViewUser)]
         public IActionResult GetAll()
         {
             var users =  _userRepo.GetAll();
@@ -116,7 +116,7 @@ namespace WebApi.Controllers
             return Ok(userDtos);
         }
 
-        //[PermissionAuthorize(Permissions.ViewUser)]
+        [PermissionAuthorize(Permissions.ViewUser)]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -146,7 +146,7 @@ namespace WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[PermissionAuthorize(Permissions.DeleteUser)]
+        [PermissionAuthorize(Permissions.DeleteUser)]
         public IActionResult Delete(int id)
         {
             _userRepo.Delete(id);

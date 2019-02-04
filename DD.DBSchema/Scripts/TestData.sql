@@ -9,32 +9,32 @@ WHERE NOT EXISTS (select * from dbo.Roles where Name = 'CommonUser');
 
 -- Insert Permissions
 INSERT INTO [dbo].[Permissions] ([Name])
-SELECT 'CreateUser'
-WHERE NOT EXISTS (select * from dbo.Permissions where Name = 'CreateUser');
+SELECT 1 /* CreateUser  */
+WHERE NOT EXISTS (select * from dbo.Permissions where Name = 1 /* CreateUser  */);
 
 INSERT INTO [dbo].[Permissions] ([Name])
-SELECT 'ViewUser'
-WHERE NOT EXISTS (select * from dbo.Permissions where Name = 'ViewUser');
+SELECT 4 /* ViewUser */
+WHERE NOT EXISTS (select * from dbo.Permissions where Name = 4); /* ViewUser */
 
 INSERT INTO [dbo].[Permissions] ([Name])
-SELECT 'UpdateUser'
-WHERE NOT EXISTS (select * from dbo.Permissions where Name = 'UpdateUser');
+SELECT 3 /* UpdateUser */
+WHERE NOT EXISTS (select * from dbo.Permissions where Name = 3); /* UpdateUser */
 
 INSERT INTO [dbo].[Permissions] ([Name])
-SELECT 'DeleteUser'
-WHERE NOT EXISTS (select * from dbo.Permissions where Name = 'DeleteUser');
+SELECT 2 /* DeleteUser */
+WHERE NOT EXISTS (select * from dbo.Permissions where Name = 2); /* DeleteUser */
 
 -- Insert RolePermissions
 INSERT INTO [dbo].[RolePermissions] 
 SELECT Id, (select Id from Roles where name = 'Admin')
 FROM Permissions
-WHERE Name in ('CreateUser','ViewUser','UpdateUser', 'DeleteUser') 
+WHERE Name in (1,4,3, 2) 
 	AND NOT EXISTS (SELECT RoleId, PermissionId from RolePermissions where RoleId = (select Id from Roles where name = 'Admin'))
 
 INSERT INTO [dbo].[RolePermissions] 
 SELECT Id, (select Id from Roles where name = 'CommonUser')
 FROM Permissions
-WHERE Name in ('CreateUser','ViewUser','UpdateUser')
+WHERE Name in (1,4,3)
 	AND NOT EXISTS (SELECT RoleId, PermissionId from RolePermissions where RoleId = (select Id from Roles where name = 'CommonUser'))
 
 

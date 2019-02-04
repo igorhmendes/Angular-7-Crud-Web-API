@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Permissions]
 (
 	[Id] INT PRIMARY KEY IDENTITY (1, 1) NOT NULL, 
-    [Name] NVARCHAR(50) NULL
+    [Name] INT NOT NULL
 )
 
 GO
