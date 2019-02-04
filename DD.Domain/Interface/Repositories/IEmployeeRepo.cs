@@ -14,5 +14,7 @@ namespace DD.Domain.Interface.Repositories
         List<Employee> FetchAllEmployees();
 
         Employee FetchEmployeeById(int id);
+
+        bool UpdateEmployee(Employee emp);
     }
 }

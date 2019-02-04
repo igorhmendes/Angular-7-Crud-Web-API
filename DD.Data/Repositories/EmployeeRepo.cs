@@ -42,5 +42,10 @@ namespace DD.Data.Repositories
             return employee;
 
         }
+
+        public bool UpdateEmployee(Employee emp)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

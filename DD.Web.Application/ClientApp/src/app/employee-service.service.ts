@@ -40,7 +40,7 @@ export class EmployeeServiceService {
     const params = new HttpParams().set('ID', emp.id.toString());
     const headers = new HttpHeaders().set('content-type', 'application/json');
     var body = {
-      Name: emp.name, Email: emp.email, ID: emp.id, ContatoNo: emp.contactNo, Address: emp.address
+      Name: emp.name, Email: emp.email, ID: emp.id, ContactNo: emp.contactNo, Address: emp.address
     }
     return this.http.put<IEmployee>(this.rootUrl + '/api/Home/' + emp.id, body)  
   }

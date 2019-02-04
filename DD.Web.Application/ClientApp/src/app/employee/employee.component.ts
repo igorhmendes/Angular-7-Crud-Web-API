@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { EmployeeServiceService } from '../employee-service.service';
 import { IEmployee } from '../models/Employee';
 import { NgForm } from '@angular/forms';
@@ -12,26 +12,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeServiceService) { }
   employeeForm: FormGroup
-  name: FormControl
-  email: FormControl
-  address: FormControl
-  contactNo: FormControl
 
+  constructor(private employeeService: EmployeeServiceService, private fb: FormBuilder) {
+    this.createForm();
+  }
+  
   ngOnInit() {
+  }
+
+  createForm() {
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
-    this.name = new FormControl('', [Validators.required]);
-    this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern), Validators.maxLength(500)]);
-    this.address = new FormControl('', Validators.maxLength(500));
-    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation), Validators.maxLength(10)]);
 
-    this.employeeForm = new FormGroup({
-      name: this.name,
-      email: this.email,
-      address: this.address,
-      contactNo: this.contactNo
+    this.employeeForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required, Validators.pattern(emailPattern)],
+      address: [],
+      contactNo: ['', Validators.required, Validators.pattern(PhoneValidation)]
     });
   }
 
@@ -44,7 +42,11 @@ export class EmployeeComponent implements OnInit {
 
     });
   }
+
 }
+
+
+
 
 
 @Component({
@@ -60,9 +62,12 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(private employeeService: EmployeeServiceService) { }
 
+
   ngOnInit() {
     this.LoadEmployees();// this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
   }
+
+
 
   deleteEmployee(id) {
 
@@ -81,6 +86,7 @@ export class EmployeeListComponent implements OnInit {
     this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
   }
 
+
   //EditEmployee(regForm: NgForm) {
   //  this.employeeService.EditEmployee(this.objemp).subscribe(res => {
   //    alert("Employee updated successfully");
@@ -89,67 +95,71 @@ export class EmployeeListComponent implements OnInit {
 
   //  },  
   //};
+
+
 }
+
+
 
 @Component({
   selector: 'app-employeeUpdate',
+  //templateUrl: './updateEmployee.html',
   templateUrl: './updateEmployee.html',
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeUpdateComponent implements OnInit {
 
+  emp: IEmployee = new IEmployee();
   _id: number;
+
   employeeForm: FormGroup
   name: FormControl
   email: FormControl
   address: FormControl
   contactNo: FormControl
+  teste: string = 'Igor';
 
-  constructor(private employeeService: EmployeeServiceService, private _route: ActivatedRoute, ) {
+  constructor(private employeeService: EmployeeServiceService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router ) {
   }
 
   //@Output() nameEvent = new EventEmitter<string>();
   //@ViewChild('closeBtn') cb: ElementRef;
+
+ 
   ngOnInit() {
-    const emailPattern = "[^ @]*@[^ @]*";
+    var self = this;
+        this._route.params.subscribe(params => {
+        this.employeeService.getEmployeeById(params['id']).subscribe(res => {
+          self.emp = res;
+          self._id = self.emp.id;
+        });
+      });
+    
+
+    const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
     this.name = new FormControl('', [Validators.required]);
     this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern)]);
     this.address = new FormControl();
-    // TODO add phone validation
-    this.contactNo = new FormControl('', [Validators.required]);
+    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation)]);
 
     this.employeeForm = new FormGroup({
       name: this.name,
       email: this.email,
       address: this.address,
       contactNo: this.contactNo
-    });
-
-    let self = this;
-    //this.employeeService.getEmployeeById(1).subscribe(data => this.emp = data);
-    this.employeeService.getEmployeeById(this._route.snapshot.params['id']).toPromise().then(data => {
-      
-      for (let prop in data) 
-        if (self.employeeForm.get(prop))
-          self.employeeForm.get(prop).setValue(data[prop]);         
-
-    });
-
-    //this.EditEmployee(this.emp);
+    })
+        
+  
   }
-  //@Input() reset: boolean = false;
-  //@ViewChild('regForm') myForm: NgForm;
-  //@Input() isReset: boolean = false;
-  //objtempemp: IEmployee;
-  //@Input() objemp: IEmployee = new IEmployee();
-  editEmployee(emp: IEmployee) {
-    
-      this.employeeService.updateEmployee(emp).subscribe(res => {
+
+  editEmployee() {
+      this.employeeService.updateEmployee(this.emp).subscribe(res => {
       alert("Employee updated successfully");
       //this.nameEvent.emit("ccc");
       //this.cb.nativeElement.click();
 
+        this.router.navigate(['/listEmployee']);
     },  
  )};
 }  
