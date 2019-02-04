@@ -74,6 +74,8 @@ namespace DD.WebAPI.Controllers
                 return BadRequest();
             }
 
+            employeeRepo.UpdateEmployee(employee);
+
             //_context.Entry(employee).State = EntityState.Modified;
 
             //try
@@ -94,6 +96,8 @@ namespace DD.WebAPI.Controllers
 
             return NoContent();
         }
+
+
 
     }
 }

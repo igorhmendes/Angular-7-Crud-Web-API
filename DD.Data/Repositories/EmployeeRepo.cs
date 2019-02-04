@@ -1,5 +1,6 @@
 ﻿using DD.Domain.Interface.Repositories;
 using DD.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,32 @@ namespace DD.Data.Repositories
             employee = _context.Employees.Find(id);
             return employee;
 
+        }
+
+        public bool UpdateEmployee(Employee emp)
+        {
+
+            _context.Entry(emp).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+                
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                throw new NotImplementedException();
+                
+            }
+
+            return true;
+
+        }
+
+        private bool EmployeeExists(int id)
+        {
+            return _context.Employees.Count(e => e.Id == id) > 0;
         }
     }
 }

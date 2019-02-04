@@ -36,14 +36,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees | employeeFilter: searchTerm">
-            <td>{{employee.Id}}</td>
-            <td>{{employee.Name}}</td>
-            <td>{{employee.Email}}</td>
-            <td>{{employee.Address}}</td>
-            <td>{{employee.ContactNo}}</td>
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.address}}</td>
+            <td>{{employee.contactNo}}</td>
             <td>
               <div class="pull-right action-buttons">
-                <button class="btn btn-primary btn-xs teste" data-title="Edit" data-toggle="modal" data-target="#edit" [routerLink]='["/updateEmployee", employee.Id]'><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn btn-primary btn-xs teste" data-title="Edit" data-toggle="modal" data-target="#edit" [routerLink]='["/updateEmployee", employee.id]'><span class="glyphicon glyphicon-pencil"></span></button>
                 <button class="btn btn-danger btn-xs teste" data-title="Delete" data-toggle="modal" data-target="#delete" (click)="deleteEmployee(employee.Id)"><span class="glyphicon glyphicon-trash"></span></button>
               </div>
             </td>

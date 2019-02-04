@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { EmployeeServiceService } from '../employee-service.service';
 import { IEmployee } from '../models/Employee';
 import { NgForm } from '@angular/forms';
@@ -12,27 +12,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeServiceService) { }
   employeeForm: FormGroup
-  name: FormControl
-  email: FormControl
-  address: FormControl
-  contactNo: FormControl
 
+  constructor(private employeeService: EmployeeServiceService, private fb: FormBuilder) {
+    this.createForm();
+  }
+  
   ngOnInit() {
+  }
+
+  createForm() {
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
-    this.name = new FormControl('', [Validators.required]);
-    this.email = new FormControl('', [Validators.required, Validators.pattern(emailPattern)]);
-    this.address = new FormControl();
-    this.contactNo = new FormControl('', [Validators.required, Validators.pattern(PhoneValidation)]);
 
-    this.employeeForm = new FormGroup({
-      name: this.name,
-      email: this.email,
-      address: this.address,
-      contactNo: this.contactNo
-    })
+    this.employeeForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required, Validators.pattern(emailPattern)],
+      address: [],
+      contactNo: ['', Validators.required, Validators.pattern(PhoneValidation)]
+    });
   }
 
   saveEmployee(obj: any) {
@@ -105,12 +103,13 @@ export class EmployeeListComponent implements OnInit {
 
 @Component({
   selector: 'app-employeeUpdate',
+  //templateUrl: './updateEmployee.html',
   templateUrl: './updateEmployee.html',
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeUpdateComponent implements OnInit {
 
-  emp: IEmployee;
+  emp: IEmployee = new IEmployee();
   _id: number;
 
   employeeForm: FormGroup
@@ -118,13 +117,25 @@ export class EmployeeUpdateComponent implements OnInit {
   email: FormControl
   address: FormControl
   contactNo: FormControl
+  teste: string = 'Igor';
 
-  constructor(private employeeService: EmployeeServiceService, private _route: ActivatedRoute, ) {
+  constructor(private employeeService: EmployeeServiceService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router ) {
   }
 
   //@Output() nameEvent = new EventEmitter<string>();
   //@ViewChild('closeBtn') cb: ElementRef;
+
+ 
   ngOnInit() {
+    var self = this;
+        this._route.params.subscribe(params => {
+        this.employeeService.getEmployeeById(params['id']).subscribe(res => {
+          self.emp = res;
+          self._id = self.emp.id;
+        });
+      });
+    
+
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
     this.name = new FormControl('', [Validators.required]);
@@ -138,27 +149,17 @@ export class EmployeeUpdateComponent implements OnInit {
       address: this.address,
       contactNo: this.contactNo
     })
-
-    //this.employeeService.getEmployeeById(1).subscribe(data => this.emp = data);
-    this.employeeService.getEmployeeById(this._route.snapshot.params['id']).toPromise().then(data => {
-      this.emp = data;
-      this._id = this.emp.id;
-    });
-    
-    //this.EditEmployee(this.emp);
+        
+  
   }
-  //@Input() reset: boolean = false;
-  //@ViewChild('regForm') myForm: NgForm;
-  //@Input() isReset: boolean = false;
-  //objtempemp: IEmployee;
-  //@Input() objemp: IEmployee = new IEmployee();
-  editEmployee(emp: IEmployee) {
-      emp.id = this._id;
-      this.employeeService.updateEmployee(emp).subscribe(res => {
+
+  editEmployee() {
+      this.employeeService.updateEmployee(this.emp).subscribe(res => {
       alert("Employee updated successfully");
       //this.nameEvent.emit("ccc");
       //this.cb.nativeElement.click();
 
+        this.router.navigate(['/listEmployee']);
     },  
  )};
 }  
