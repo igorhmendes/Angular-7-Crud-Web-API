@@ -11,7 +11,7 @@ import { User } from './auth/user/user.component';
   <div class='container-fluid'>
     <div class='row'>
       <div class='col-sm-3' *ngIf="currentUser">
-        <app-nav-menu></app-nav-menu>
+        
       </div>
       
       

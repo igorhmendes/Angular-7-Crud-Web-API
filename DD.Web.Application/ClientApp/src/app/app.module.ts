@@ -74,9 +74,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     //HeaderComponent,
     //NgbModule,
     EmployeeFilterPipe
-
-
-
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

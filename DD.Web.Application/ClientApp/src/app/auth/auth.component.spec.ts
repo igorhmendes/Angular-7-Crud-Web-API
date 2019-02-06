@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.component';
+import { AuthService } from '../auth-service.service';
 
 describe('AuthGuard', () => {
   let component: AuthGuard;
@@ -8,7 +9,7 @@ describe('AuthGuard', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuthGuard ]
+      declarations: [AuthGuard, AuthService ]
     })
     .compileComponents();
   }));
