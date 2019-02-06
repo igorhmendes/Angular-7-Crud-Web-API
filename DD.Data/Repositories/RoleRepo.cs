@@ -11,7 +11,6 @@ namespace DD.Data.Repositories
     public class RoleRepo : IRoleRepo
     {
         private DiscoveryDataDBContext _context;
-
         public RoleRepo(DiscoveryDataDBContext context)
         {
             _context = context;    
