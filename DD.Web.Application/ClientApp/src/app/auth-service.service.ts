@@ -2,32 +2,24 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './auth/user/user.component';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
-class AuthResponse {
-  id : number;
-  username : string;
-  firstName : string;
-  lastName : string;
-  token : string
-}
+import { AuthResponse } from 'src/models/models';
 
 @Injectable()
 export class AuthService {
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
-  get isLoggedIn() {
-    return this.loggedIn.value;
-  }
 
   constructor(private router: Router, private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  get isLoggedIn() {
+    return this.loggedIn.value;
   }
 
   public get currentUserValue(): User {
@@ -43,7 +35,7 @@ export class AuthService {
       }).subscribe(resp => {     
 
         self.loggedIn.next(true);
-        this.currentUserSubject.next(
+        self.currentUserSubject.next(
           { 
             userName : resp.username,
             firstName : resp.firstName,
