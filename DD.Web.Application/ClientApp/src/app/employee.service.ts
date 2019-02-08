@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 
 
 @Injectable()
-export class EmployeeServiceService {
+export class EmployeeService {
 
   readonly rootUrl = environment.rootUrl + "/Home/";
   private _url: string = "/assets/data/employees.json";

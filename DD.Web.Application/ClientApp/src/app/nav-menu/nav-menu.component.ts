@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './../auth-service.service';
-import { EmployeeServiceService } from '../employee-service.service';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -11,7 +11,7 @@ export class NavMenuComponent {
   public isCollapsed = true;
   public isExpanded = false;
 
-  constructor(private authService: AuthService, private employeeService: EmployeeServiceService) {
+  constructor(private authService: AuthService, private employeeService: EmployeeService) {
   }
 
   collapse() {

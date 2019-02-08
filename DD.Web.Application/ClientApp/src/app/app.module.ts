@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeeUpdateComponent } from './employee/employee.component';
 import { EmployeeListComponent } from './employee/employee.component'; 
-import { EmployeeServiceService } from './employee-service.service';
+import { EmployeeService } from './employee.service';
 
 import { CommonModule } from "@angular/common"
 import { LoginComponent } from './login/login.component';
@@ -47,7 +47,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     //MatSidenav,
 
   ],
-  providers: [EmployeeServiceService, AuthService, AuthGuard],
+  providers: [EmployeeService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 
