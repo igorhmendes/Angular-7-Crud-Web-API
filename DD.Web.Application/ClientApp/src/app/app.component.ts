@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AuthService } from './auth-service.service';
 import { User } from './auth/user/user.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'my-app',
@@ -10,13 +11,10 @@ import { User } from './auth/user/user.component';
 
   <div class='container-fluid'>
     <div class='row'>
-      <div class='col-sm-3' *ngIf="currentUser">
-        
+      <div class='col-sm-3' *ngIf="currentUser | async">
+        <app-nav-menu></app-nav-menu>
       </div>
-      
-      
       <router-outlet></router-outlet>
-      
     </div>
   </div>
 
@@ -25,13 +23,13 @@ import { User } from './auth/user/user.component';
   styles: []
 })
 export class AppComponent {
-  currentUser: User;
+  currentUser: Observable<User>;
 
   constructor(
     private router: Router,
     private authenticationService: AuthService
   ) {
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.currentUser = this.authenticationService.currentUser;
   }
 
   logout() {

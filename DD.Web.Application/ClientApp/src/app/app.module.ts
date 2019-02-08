@@ -44,7 +44,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     CommonModule,
     AppRoutingModule,
     NgbModule.forRoot()
-    //MatSidenav,
 
   ],
   providers: [EmployeeService, AuthService, AuthGuard],
