@@ -79,7 +79,6 @@ export class EmployeeListComponent implements OnInit {
 
 @Component({
   selector: 'app-employeeUpdate',
-  //templateUrl: './updateEmployee.html',
   templateUrl: './updateEmployee.html',
   styleUrls: ['./employee.component.css']
 })
@@ -98,10 +97,6 @@ export class EmployeeUpdateComponent implements OnInit {
   constructor(private employeeService: EmployeeService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router ) {
   }
 
-  //@Output() nameEvent = new EventEmitter<string>();
-  //@ViewChild('closeBtn') cb: ElementRef;
-
- 
   ngOnInit() {
     var self = this;
         this._route.params.subscribe(params => {
@@ -109,8 +104,7 @@ export class EmployeeUpdateComponent implements OnInit {
           self.emp = res;
           self._id = self.emp.id;
         });
-      });
-    
+      });    
 
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
@@ -124,18 +118,13 @@ export class EmployeeUpdateComponent implements OnInit {
       email: this.email,
       address: this.address,
       contactNo: this.contactNo
-    })
-        
-  
+    });
   }
 
   editEmployee() {
       this.employeeService.updateEmployee(this.emp).subscribe(res => {
-      alert("Employee updated successfully");
-      //this.nameEvent.emit("ccc");
-      //this.cb.nativeElement.click();
-
-        this.router.navigate(['/listEmployee']);
+      alert("Employee updated successfully"); 
+      this.router.navigate(['/listEmployee']);
     },  
  )};
 }  

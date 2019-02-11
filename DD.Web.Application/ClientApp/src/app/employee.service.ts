@@ -3,12 +3,6 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { IEmployee } from './models/Employee';
 import { Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-//import { map } from 'rxjs/operators';
-//import { read } from 'fs';
-
-//import 'rxjs/add/operator/catch';
-//import 'rxjs/add/operator/map';
-
 
 @Injectable()
 export class EmployeeService {
