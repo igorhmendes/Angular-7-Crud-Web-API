@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { EmployeeServiceService } from '../employee-service.service';
+import { EmployeeService } from '../employee.service';
 import { IEmployee } from '../models/Employee';
-import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -14,7 +13,7 @@ export class EmployeeComponent implements OnInit {
 
   employeeForm: FormGroup
 
-  constructor(private employeeService: EmployeeServiceService, private fb: FormBuilder) {
+  constructor(private employeeService: EmployeeService, private fb: FormBuilder) {
     this.createForm();
   }
   
@@ -42,12 +41,7 @@ export class EmployeeComponent implements OnInit {
 
     });
   }
-
 }
-
-
-
-
 
 @Component({
   selector: 'app-list-employee',
@@ -60,15 +54,12 @@ export class EmployeeListComponent implements OnInit {
   searchTerm: string;
   tempemp: IEmployee;
 
-  constructor(private employeeService: EmployeeServiceService) { }
-
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.LoadEmployees();// this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
+    this.LoadEmployees()
   }
-
-
-
+  
   deleteEmployee(id) {
 
     if (confirm("Are you sure you want to delete this ?")) {
@@ -81,29 +72,13 @@ export class EmployeeListComponent implements OnInit {
     }
   }  
 
-
   LoadEmployees() {
     this.employeeService.getAllEmployees().subscribe(data => this.employees = data);
   }
-
-
-  //EditEmployee(regForm: NgForm) {
-  //  this.employeeService.EditEmployee(this.objemp).subscribe(res => {
-  //    alert("Employee updated successfully");
-  //    this.nameEvent.emit("ccc");
-  //    this.cb.nativeElement.click();
-
-  //  },  
-  //};
-
-
 }
-
-
 
 @Component({
   selector: 'app-employeeUpdate',
-  //templateUrl: './updateEmployee.html',
   templateUrl: './updateEmployee.html',
   styleUrls: ['./employee.component.css']
 })
@@ -119,13 +94,9 @@ export class EmployeeUpdateComponent implements OnInit {
   contactNo: FormControl
   teste: string = 'Igor';
 
-  constructor(private employeeService: EmployeeServiceService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router ) {
+  constructor(private employeeService: EmployeeService, private _route: ActivatedRoute, private fb: FormBuilder, private router: Router ) {
   }
 
-  //@Output() nameEvent = new EventEmitter<string>();
-  //@ViewChild('closeBtn') cb: ElementRef;
-
- 
   ngOnInit() {
     var self = this;
         this._route.params.subscribe(params => {
@@ -133,8 +104,7 @@ export class EmployeeUpdateComponent implements OnInit {
           self.emp = res;
           self._id = self.emp.id;
         });
-      });
-    
+      });    
 
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const PhoneValidation = "^[7-9][0-9]{9}$";
@@ -148,18 +118,13 @@ export class EmployeeUpdateComponent implements OnInit {
       email: this.email,
       address: this.address,
       contactNo: this.contactNo
-    })
-        
-  
+    });
   }
 
   editEmployee() {
       this.employeeService.updateEmployee(this.emp).subscribe(res => {
-      alert("Employee updated successfully");
-      //this.nameEvent.emit("ccc");
-      //this.cb.nativeElement.click();
-
-        this.router.navigate(['/listEmployee']);
+      alert("Employee updated successfully"); 
+      this.router.navigate(['/listEmployee']);
     },  
  )};
 }  

@@ -1,25 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthGuard } from './auth.component';
+import { AuthService } from '../auth-service.service';
 
 describe('AuthGuard', () => {
-  let component: AuthGuard;
-  let fixture: ComponentFixture<AuthGuard>;
-
+  
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuthGuard ]
+      providers : [ AuthService ],
+      declarations : [ AuthGuard ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AuthGuard);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should be created', () => {
+    const service: AuthGuard = TestBed.get(AuthGuard);
+    expect(service).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
 });
