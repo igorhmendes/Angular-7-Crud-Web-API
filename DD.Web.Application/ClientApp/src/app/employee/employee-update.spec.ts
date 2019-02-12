@@ -1,17 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { EmployeeListComponent, EmployeeUpdateComponent } from './employee.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { EmployeeUpdateComponent } from './employee.component';
 import { EmployeeService } from '../employee.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EmployeeFilterPipe } from './employee-filter.pipe';
 import { Router } from '@angular/router';
-import { RouterLinkDirectiveStub } from './employee.stubs';
+import { IEmployee } from '../models/Employee';
+import { of } from 'rxjs';
 
 describe('EmployeeUpdateComponent', () => {
   let component: EmployeeUpdateComponent;
   let fixture: ComponentFixture<EmployeeUpdateComponent>; 
   let employeeService;
+  const successfulResponse: IEmployee = { id: 1, name: "Employee1", address: "Address 1", contactNo: 9999999, email: "mail@mail.com" };
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     // Arrange
     // Create EmployeeService and Router Mocks
     employeeService = jasmine.createSpyObj('EmployeeService', ['getEmployeeById', 'updateEmployee']);
@@ -24,19 +25,35 @@ describe('EmployeeUpdateComponent', () => {
         { provide: EmployeeService, useValue: employeeService },
         { provide: Router, useValue: routerSpy }         
       ],
-      declarations: [ EmployeeListComponent, EmployeeFilterPipe, RouterLinkDirectiveStub ] });
+      declarations: [ EmployeeUpdateComponent ] });
     
     fixture = TestBed.createComponent(EmployeeUpdateComponent);
     component = fixture.componentInstance;    
-  }));
 
-  it("should create the element", () => {
+    // Arrange
+    employeeService.getEmployeeById.and.returnValue(of(successfulResponse));
+  });
+
+  it('should create the component', () => {
+    // Act 
+    fixture.detectChanges();
+
+    // Assert
+    expect(component).toBeTruthy();
+  });
+
+  it("should update the employee", () => {
+    // Arrange    
+    employeeService.getEmployeeById.and.returnValue(of(successfulResponse));
+    Object.keys(successfulResponse).forEach(key => component.emp[key] = successfulResponse[name]);
+
     // Act
+    component.editEmployee();
     fixture.detectChanges(); // after ngOnInit
-    const updtResponse = {};
 
     // Assert
     
+    expect(component.employeeForm.pristine).toBe(true); 
 
   }); 
 });
