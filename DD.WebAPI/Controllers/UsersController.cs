@@ -126,6 +126,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [PermissionAuthorize(Permissions.UpdateUser)]
         public IActionResult Update(int id, [FromBody]UserDto userDto)
         {
             // map dto to entity and set id
