@@ -29,7 +29,6 @@ export class AuthService {
 
   login(user: User) {
     if (user.userName !== '' && user.password !== '') {
-      debugger;
       let authService = this;
       this.http.post<AuthResponse>(environment.rootUrl + '/Users/Authenticate', {
         "userName" : user.userName,

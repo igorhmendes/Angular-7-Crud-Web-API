@@ -5,18 +5,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        // NgbModule.forRoot(),
         HttpClientModule,
-        HttpModule
+        HttpModule,
+        NgbModule        
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        NavMenuComponent
       ],
       
       providers: [AuthService]
