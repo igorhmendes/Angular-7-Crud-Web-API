@@ -1,25 +1,37 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AuthGuard } from './auth.component';
+import { AuthService } from '../auth-service.service';
 
 describe('AuthGuard', () => {
-  let component: AuthGuard;
-  let fixture: ComponentFixture<AuthGuard>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AuthGuard ]
-    })
-    .compileComponents();
-  }));
+  
+  let router;
+  let authService;
+  let authGuard : AuthGuard;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthGuard);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    authService = new AuthService(null, null);    
+    authGuard = new AuthGuard(authService, router);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('it should allow activation', () => {
+    // Arrange
+    spyOnProperty(authService, "isLoggedIn").and.returnValue(true);
+
+    // Act
+    let authGuardResponse = authGuard.canActivate(null, null);
+
+    // Assert
+    expect(authGuardResponse).toBe(true);
   });
+
+  it('it should deny activation', () => {
+    // Arrange
+    spyOnProperty(authService, "isLoggedIn").and.returnValue(false);
+
+    // Act
+    let authGuardResponse = authGuard.canActivate(null, null);
+
+    // Assert
+    expect(authGuardResponse).toBe(false);
+  });
+
 });
