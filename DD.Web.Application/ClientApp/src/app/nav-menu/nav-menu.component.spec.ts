@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavMenuComponent } from './nav-menu.component';
+import { RouterLinkDirectiveStub } from '../employee/employee.stubs';
 
 describe('NavMenuComponent', () => {
   let component: NavMenuComponent;
@@ -8,7 +8,7 @@ describe('NavMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavMenuComponent ]
+      declarations: [ NavMenuComponent, RouterLinkDirectiveStub ]
     })
     .compileComponents();
   }));
