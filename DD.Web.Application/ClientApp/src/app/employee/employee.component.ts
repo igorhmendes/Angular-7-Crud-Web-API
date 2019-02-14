@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
 
   createForm() {
     const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const PhoneValidation = "^[7-9]{4}-[0-9]{5}$"; // 777888888
+    const PhoneValidation = "^[7-9]{4}[0-9]{5}$"; // 777888888
 
     this.employeeForm = this.fb.group({
       name: ['', Validators.required],
