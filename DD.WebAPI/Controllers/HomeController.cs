@@ -36,6 +36,7 @@ namespace DD.WebAPI.Controllers
             return employeeRepo.FetchAllEmployees();
         }
 
+        [NonAction]
         public IActionResult Index()
         {
             return View();
