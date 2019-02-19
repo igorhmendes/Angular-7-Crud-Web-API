@@ -18,13 +18,10 @@ namespace DD.Selenium.Pages
             this.webDriverWait = webDriverWait;
         }
 
-        //[FindsBy(How = How.Id, Using = "userName")]
         private IWebElement TxtUser => driver.FindElement(By.Name("email"));
 
-        //[FindsBy(How = How.Name, Using = "pass")]
         private IWebElement TxtPassword => driver.FindElement(By.Name("pass"));
 
-        //[FindsBy(How = How.ClassName, Using = "login100-form-btn")]
         private IWebElement BtnSign => driver.FindElement(By.ClassName("login100-form-btn"));
 
         public void TypeUser(string value)

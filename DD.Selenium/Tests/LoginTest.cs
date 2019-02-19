@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using DD.Selenium.Common;
 using DD.Selenium.Pages;
-using DD.Selenium.WrapperFactory;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -20,21 +21,16 @@ namespace DD.Selenium.Tests
         {
         }
 
-        [AssemblyCleanup]
-        public static void AssemblyCleanup()
-        {
-            BroswerBuilder.CloseAllDrivers();
-        }
-
         [TestMethod]
-        public void ExecuteLoginTest()
+        [DataRow("admin@test.com", "123456")]
+        public void ExecuteLoginTest(string user, string pass)
         {
             bool result = true;
 
-            if (!BroswerBuilder.logged)
+            if (!broswer.logged)
             {
-                BroswerBuilder.LoadApplication(driver, "http://localhost:4200/");
-                result = loginPage.ExecuteLogin("admin@test.com", "123456");
+                BroswerBuilder.LoadApplication(broswer, Configuration[URL_ADDRESS_KEY]);
+                result = loginPage.ExecuteLogin(user, pass);
             }
 
             Assert.IsTrue(result);

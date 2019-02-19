@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DD.Selenium.WrapperFactory
+namespace DD.Selenium.Common
 {
     public enum BroswerEnum
     {
