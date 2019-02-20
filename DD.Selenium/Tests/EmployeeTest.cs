@@ -1,6 +1,5 @@
 ﻿using DD.Selenium.Common;
 using DD.Selenium.Pages;
-using DD.Selenium.WrapperFactory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -12,17 +11,21 @@ namespace DD.Selenium.Tests
     [TestClass]
     public class EmployeeTest : TestBase
     {
+        private const string URL_EMPLOYEE = "employee";
+
         public EmployeeTest() : base()
         {
+
         }
 
         [TestMethod]
-        public void InsertEmployeeTest()
+        [DataRow("Joao", "joao@test.com", "999999999", "Av Santa Beatriz, 320")]
+        public void InsertEmployeeTest(string name, string email, string contact, string address)
         {
-            BroswerBuilder.LoadApplication(driver, "http://localhost:4200/employee");
+            BroswerBuilder.LoadApplication(broswer, Configuration[URL_ADDRESS_KEY] + URL_EMPLOYEE);
 
-            EmployeePage employee = new EmployeePage(driver, webDriverWait);
-            bool result = employee.InsertEmployee("Joao", "joao@test.com", "999999999", "Av Santa Beatriz, 320");
+            EmployeePage employee = new EmployeePage(broswer.driver, broswer.webDriverWait);
+            bool result = employee.InsertEmployee(name, email, contact, address);
 
             Assert.IsTrue(result);
         }

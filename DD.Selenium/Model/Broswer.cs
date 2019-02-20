@@ -6,9 +6,18 @@ using System.Text;
 
 namespace DD.Selenium.Model
 {
-    public class Driver
+    public class Broswer
     {
         public IWebDriver driver { get; set; }
         public WebDriverWait webDriverWait { get; set; }
+        public bool logged { get; set; }
+
+        public Broswer(IWebDriver driver, WebDriverWait webDriverWait)
+        {
+            this.driver = driver;
+            this.webDriverWait = webDriverWait;
+            this.logged = false;
+        }
+
     }
 }
