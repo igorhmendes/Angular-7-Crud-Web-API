@@ -22,9 +22,9 @@ namespace DD.Selenium.Tests
         [DataRow("Joao", "joao@test.com", "999999999", "Av Santa Beatriz, 320")]
         public void InsertEmployeeTest(string name, string email, string contact, string address)
         {
-            BroswerBuilder.LoadApplication(broswer, Configuration[URL_ADDRESS_KEY] + URL_EMPLOYEE);
+            BrowserBuilder.LoadApplication(browser, configuration[URL_ADDRESS_KEY] + URL_EMPLOYEE);
 
-            EmployeePage employee = new EmployeePage(broswer.driver, broswer.webDriverWait);
+            EmployeePage employee = new EmployeePage(browser.driver, browser.webDriverWait);
             bool result = employee.InsertEmployee(name, email, contact, address);
 
             Assert.IsTrue(result);

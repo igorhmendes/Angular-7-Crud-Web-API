@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DD.Selenium.Common
 {
-    public enum BroswerEnum
+    public enum BrowserEnum
     {
         Chrome,
         Firefox,

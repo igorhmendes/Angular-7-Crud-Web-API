@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace DD.Selenium.Tests
+namespace DD.Selenium
 {
     [TestClass]
-    public class Startup : TestBase
+    public class StartupSelenium
     {
         [AssemblyInitialize]
         public static void AssemblyInit(TestContext context)
@@ -20,13 +20,13 @@ namespace DD.Selenium.Tests
             //.AddJsonFile("appsettings.Development.json", optional:true, reloadOnChange: true)
             //.AddEnvironmentVariables();
 
-            Configuration = builder.Build();
+            TestBase.configuration = builder.Build();
         }
 
         [AssemblyCleanup]
         public static void AssemblyCleanup()
         {
-            BroswerBuilder.CloseAllDrivers();
+            BrowserBuilder.CloseAllDrivers();
         }
 
     }

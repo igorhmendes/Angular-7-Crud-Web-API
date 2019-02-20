@@ -20,23 +20,22 @@ namespace DD.Selenium.Common
         private const string USER_KEY = "ConfigConnections:User";
         private const string PASS_KEY = "ConfigConnections:Pass";
 
-        protected Broswer broswer { get; set; }
+        protected Browser browser { get; set; }
 
-        public static IConfigurationRoot Configuration { get; set; }
+        public static IConfigurationRoot configuration { get; set; }
 
         public TestBase()
         {
-            BroswerEnum broswerEnum;
-            Enum.TryParse(Configuration[DEFAULT_BROSWER_KEY], out broswerEnum);
-            broswer = BroswerBuilder.InitBrowser(broswerEnum);
+            Enum.TryParse(configuration[DEFAULT_BROSWER_KEY], out BrowserEnum browserEnum);
+            browser = BrowserBuilder.InitBrowser(browserEnum);
 
             // There isnt't user logged on Application
-            if (!broswer.logged)
+            if (!browser.logged)
             {
-                BroswerBuilder.Maximize(broswer);
-                BroswerBuilder.LoadApplication(broswer, Configuration[URL_ADDRESS_KEY]);
-                LoginPage login = new LoginPage(broswer.driver, broswer.webDriverWait);
-                broswer.logged = login.ExecuteLogin(Configuration[USER_KEY], Configuration[PASS_KEY]);
+                BrowserBuilder.Maximize(browser);
+                BrowserBuilder.LoadApplication(browser, configuration[URL_ADDRESS_KEY]);
+                LoginPage login = new LoginPage(browser.driver, browser.webDriverWait);
+                browser.logged = login.ExecuteLogin(configuration[USER_KEY], configuration[PASS_KEY]);
             }
         }
 

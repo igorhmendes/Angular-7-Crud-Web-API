@@ -27,9 +27,10 @@ namespace DD.Selenium.Tests
         {
             bool result = true;
 
-            if (!broswer.logged)
+            if (!browser.logged)
             {
-                BroswerBuilder.LoadApplication(broswer, Configuration[URL_ADDRESS_KEY]);
+                BrowserBuilder.LoadApplication(browser, configuration[URL_ADDRESS_KEY]);
+                loginPage = new LoginPage(browser.driver, browser.webDriverWait);
                 result = loginPage.ExecuteLogin(user, pass);
             }
 
